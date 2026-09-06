@@ -1,15 +1,12 @@
 # Game Portal
 
-Landing page for small browser games.
+Doorway for browser games. Right now that is [Crawler](https://tabyen.github.io/dungeon-horde/).
 
-Live (once Pages is on): [https://tabyen.github.io/game-portal/](https://tabyen.github.io/game-portal/)
+Live: [https://tabyen.github.io/game-portal/](https://tabyen.github.io/game-portal/)
 
-Games come from `games.json` plus any public GitHub repo under `tabyen` that has GitHub Pages. To add a game, either:
+The featured game is the first entry in `games.json`. Extra entries show under **Also on the shelf**.
 
-1. Enable Pages on the game repo, or
-2. Add an entry to `games.json`.
-
-If you open this page on `localhost` and a game lists a `local` URL, the portal probes it and offers **Play locally**.
+If you open this page on `localhost` and Crawler is running locally, you get **Play locally**.
 
 ```bash
 cd game-portal

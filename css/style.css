@@ -24,13 +24,18 @@ a {
   color: var(--gold);
 }
 
+.hidden {
+  display: none !important;
+}
+
 .hero {
   position: relative;
-  min-height: 44vh;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: grid;
   place-items: end start;
-  background: #0c0908 url("../assets/hero.jpg") center / cover no-repeat;
-  padding: calc(48px + env(safe-area-inset-top)) 8vw 56px;
+  background: #0c0908 url("../assets/covers/crawler.jpg") center / cover no-repeat;
+  padding: calc(48px + env(safe-area-inset-top)) 8vw calc(48px + env(safe-area-inset-bottom));
 }
 
 .veil {
@@ -42,6 +47,7 @@ a {
 .hero-copy {
   position: relative;
   max-width: 720px;
+  text-shadow: 0 2px 16px #000c;
 }
 
 .eyebrow {
@@ -73,9 +79,16 @@ h2 {
 
 .tagline {
   margin: 14px 0 0;
-  font-size: 20px;
+  font-size: 22px;
   font-style: italic;
   color: var(--muted);
+}
+
+.lede {
+  margin: 12px 0 0;
+  max-width: 34em;
+  color: var(--ink);
+  line-height: 1.4;
 }
 
 .shelf {
@@ -139,11 +152,14 @@ h2 {
   flex: 1;
 }
 
+.hero .actions {
+  margin-top: 22px;
+}
+
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 8px;
 }
 
 .btn {
@@ -152,10 +168,10 @@ h2 {
   background: #1a140c;
   color: var(--gold);
   font-family: Cinzel, Palatino, serif;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 10px 16px;
+  padding: 12px 22px;
   text-decoration: none;
   display: inline-block;
 }
@@ -202,8 +218,9 @@ footer {
 
 @media (max-width: 700px) {
   .hero {
-    min-height: 42vh;
-    padding: calc(32px + env(safe-area-inset-top)) 20px 36px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: calc(32px + env(safe-area-inset-top)) 20px calc(36px + env(safe-area-inset-bottom));
   }
 
   h1 {
@@ -213,5 +230,9 @@ footer {
 
   .tagline {
     font-size: 17px;
+  }
+
+  .lede {
+    font-size: 16px;
   }
 }
