@@ -1,0 +1,217 @@
+:root {
+  --bg: #0c0908;
+  --ink: #e8dcc8;
+  --muted: #b5a48a;
+  --gold: #c9a35a;
+  --line: #3a2e22;
+  --panel: #140f0c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "IM Fell English", Palatino, Georgia, serif;
+}
+
+a {
+  color: var(--gold);
+}
+
+.hero {
+  position: relative;
+  min-height: 44vh;
+  display: grid;
+  place-items: end start;
+  background: #0c0908 url("../assets/hero.jpg") center / cover no-repeat;
+  padding: calc(48px + env(safe-area-inset-top)) 8vw 56px;
+}
+
+.veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #0c090866 0%, #0c0908ee 100%);
+}
+
+.hero-copy {
+  position: relative;
+  max-width: 720px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: var(--gold);
+  font-family: Cinzel, Palatino, serif;
+}
+
+h1,
+h2 {
+  font-family: Cinzel, Palatino, serif;
+  font-weight: 700;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(40px, 8vw, 72px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 22px;
+  letter-spacing: 0.06em;
+}
+
+.tagline {
+  margin: 14px 0 0;
+  font-size: 20px;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.shelf {
+  width: min(1100px, calc(100% - 40px));
+  margin: 40px auto 80px;
+}
+
+.fine {
+  color: #7a6c58;
+  font-size: 15px;
+}
+
+.games {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 22px;
+  margin-top: 22px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 18px 40px #0008;
+}
+
+.card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #1a140f;
+}
+
+.card-body {
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.card h3 {
+  font-family: Cinzel, Palatino, serif;
+  font-size: 22px;
+  margin: 0;
+}
+
+.card .tag {
+  margin: 0;
+  color: var(--gold);
+  font-style: italic;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.35;
+  flex: 1;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid var(--gold);
+  background: #1a140c;
+  color: var(--gold);
+  font-family: Cinzel, Palatino, serif;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover,
+.btn:focus {
+  background: var(--gold);
+  color: #1a140c;
+}
+
+.btn.ghost {
+  border-color: #5a4a38;
+  color: var(--muted);
+}
+
+.btn.ghost:hover,
+.btn.ghost:focus {
+  background: #2a2018;
+  color: var(--ink);
+}
+
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--line);
+  padding: 2px 6px;
+  width: fit-content;
+}
+
+.empty {
+  color: var(--muted);
+  font-style: italic;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 20px 8vw calc(28px + env(safe-area-inset-bottom));
+  color: #7a6c58;
+  font-size: 14px;
+}
+
+@media (max-width: 700px) {
+  .hero {
+    min-height: 42vh;
+    padding: calc(32px + env(safe-area-inset-top)) 20px 36px;
+  }
+
+  h1 {
+    font-size: clamp(26px, 8vw, 44px);
+    letter-spacing: 0.03em;
+  }
+
+  .tagline {
+    font-size: 17px;
+  }
+}

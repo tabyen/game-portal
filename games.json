@@ -1,0 +1,12 @@
+[
+  {
+    "id": "dungeon-horde",
+    "title": "Crawler",
+    "tagline": "There is a room at the bottom.",
+    "description": "A real-time dungeon horde. Move. Your weapon works without you. The dark does not wait its turn.",
+    "repo": "tabyen/dungeon-horde",
+    "play": "https://tabyen.github.io/dungeon-horde/",
+    "local": "http://127.0.0.1:8765/",
+    "cover": "assets/covers/crawler.jpg"
+  }
+]
