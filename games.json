@@ -30,5 +30,16 @@
     "play": "https://tabyen.github.io/segfault-safari/",
     "local": "http://127.0.0.1:8641/",
     "cover": "assets/covers/segfault-safari.jpg"
+  },
+  {
+    "id": "basement-escape",
+    "title": "Basement Escape",
+    "tagline": "Intruders below. The elevator is the only way out.",
+    "lede": "The lamps are few. The intruders aren't.",
+    "description": "A late-90s-style raycasting shooter in pure JavaScript. Fight through the storage halls, rec room, and laundry, grab the valuables, and reach the elevator.",
+    "repo": "tabyen/basement-escape",
+    "play": "https://tabyen.github.io/basement-escape/",
+    "local": "http://127.0.0.1:8642/",
+    "cover": "assets/covers/basement-escape.jpg"
   }
 ]
