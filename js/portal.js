@@ -1,4 +1,5 @@
 const isLocalHost = ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
+const HEADLINER_KEY = "portal-headliner";
 
 function escapeHtml(s) {
   return String(s)
@@ -9,6 +10,7 @@ function escapeHtml(s) {
 }
 
 function addButtons(el, game) {
+  el.replaceChildren();
   const playUrl = game.localUp ? game.local : game.play;
   if (playUrl) {
     const play = document.createElement("a");
@@ -33,7 +35,7 @@ function addButtons(el, game) {
   }
 }
 
-function card(game) {
+function card(game, onPick) {
   const article = document.createElement("article");
   article.className = "card";
   article.innerHTML = `
@@ -46,6 +48,12 @@ function card(game) {
     </div>
   `;
   addButtons(article.querySelector(".actions"), game);
+  const makeHeadliner = document.createElement("button");
+  makeHeadliner.type = "button";
+  makeHeadliner.className = "btn ghost";
+  makeHeadliner.textContent = "Make headliner";
+  makeHeadliner.addEventListener("click", () => onPick(game.id));
+  article.querySelector(".actions").prepend(makeHeadliner);
   return article;
 }
 
@@ -63,6 +71,18 @@ async function probeLocal(url) {
   }
 }
 
+function idFromHash() {
+  return decodeURIComponent(location.hash.replace(/^#/, "")).trim();
+}
+
+function pickId(games) {
+  const fromHash = idFromHash();
+  if (fromHash && games.some((g) => g.id === fromHash)) return fromHash;
+  const stored = localStorage.getItem(HEADLINER_KEY);
+  if (stored && games.some((g) => g.id === stored)) return stored;
+  return games[0].id;
+}
+
 async function main() {
   let games = [];
   try {
@@ -71,6 +91,7 @@ async function main() {
   } catch {
     games = [];
   }
+  if (!games.length) return;
 
   if (isLocalHost) {
     await Promise.all(
@@ -80,24 +101,55 @@ async function main() {
     );
   }
 
-  const featured = games[0];
-  if (!featured) return;
-
+  const byId = Object.fromEntries(games.map((g) => [g.id, g]));
+  const doorList = document.getElementById("door-list");
+  const shelf = document.getElementById("games");
+  const more = document.getElementById("more");
   const hero = document.getElementById("hero");
-  if (featured.cover) hero.style.backgroundImage = `url("${featured.cover}")`;
-  document.getElementById("title").textContent = featured.title;
-  document.getElementById("tagline").textContent = featured.tagline || "";
-  document.getElementById("lede").textContent = featured.lede || featured.description || "";
-  document.title = `${featured.title} — Game Portal`;
-  addButtons(document.getElementById("hero-actions"), featured);
 
-  const rest = games.slice(1);
-  if (rest.length) {
-    const more = document.getElementById("more");
-    more.classList.remove("hidden");
-    const shelf = document.getElementById("games");
-    for (const g of rest) shelf.append(card(g));
+  function setHeadliner(id, { pushHash } = { pushHash: true }) {
+    const game = byId[id] || games[0];
+    localStorage.setItem(HEADLINER_KEY, game.id);
+    if (pushHash) history.replaceState(null, "", `#${game.id}`);
+
+    if (game.cover) hero.style.backgroundImage = `url("${game.cover}")`;
+    document.getElementById("title").textContent = game.title;
+    document.getElementById("tagline").textContent = game.tagline || "";
+    document.getElementById("lede").textContent = game.lede || game.description || "";
+    document.title = `${game.title} — Game Portal`;
+    addButtons(document.getElementById("hero-actions"), game);
+
+    doorList.querySelectorAll(".door").forEach((btn) => {
+      btn.classList.toggle("on", btn.dataset.id === game.id);
+      btn.setAttribute("aria-current", btn.dataset.id === game.id ? "true" : "false");
+    });
+
+    const rest = games.filter((g) => g.id !== game.id);
+    shelf.replaceChildren();
+    if (rest.length) {
+      more.classList.remove("hidden");
+      for (const g of rest) shelf.append(card(g, (next) => setHeadliner(next)));
+    } else {
+      more.classList.add("hidden");
+    }
   }
+
+  doorList.replaceChildren();
+  for (const g of games) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "door";
+    btn.dataset.id = g.id;
+    btn.innerHTML = `<span class="door-title">${escapeHtml(g.title)}</span>`;
+    btn.addEventListener("click", () => setHeadliner(g.id));
+    doorList.append(btn);
+  }
+
+  setHeadliner(pickId(games), { pushHash: !idFromHash() });
+  window.addEventListener("hashchange", () => {
+    const id = idFromHash();
+    if (id && byId[id]) setHeadliner(id, { pushHash: false });
+  });
 }
 
 main();

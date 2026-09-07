@@ -30,12 +30,66 @@ a {
 
 .hero {
   position: relative;
-  min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 88vh;
+  min-height: 88dvh;
   display: grid;
-  place-items: end start;
+  grid-template-rows: auto 1fr;
+  align-items: end;
   background: #0c0908 url("../assets/covers/crawler.jpg") center / cover no-repeat;
-  padding: calc(48px + env(safe-area-inset-top)) 8vw calc(48px + env(safe-area-inset-bottom));
+  background-size: cover;
+  transition: background-image 0.35s ease;
+  padding: calc(18px + env(safe-area-inset-top)) 8vw calc(40px + env(safe-area-inset-bottom));
+}
+
+.doors {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin-bottom: auto;
+}
+
+.doors-label {
+  margin: 0;
+  font-family: Cinzel, Palatino, serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-shadow: 0 2px 10px #000;
+}
+
+.door-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.door {
+  appearance: none;
+  cursor: pointer;
+  border: 1px solid #5a4a38;
+  background: #140f0ccc;
+  color: var(--ink);
+  font-family: Cinzel, Palatino, serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+}
+
+.door:hover,
+.door:focus {
+  border-color: var(--gold);
+  outline: none;
+}
+
+.door.on {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: #1a140c;
 }
 
 .veil {
@@ -218,9 +272,14 @@ footer {
 
 @media (max-width: 700px) {
   .hero {
-    min-height: 100vh;
-    min-height: 100dvh;
-    padding: calc(32px + env(safe-area-inset-top)) 20px calc(36px + env(safe-area-inset-bottom));
+    min-height: 92vh;
+    min-height: 92dvh;
+    padding: calc(16px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom));
+  }
+
+  .door {
+    font-size: 12px;
+    padding: 8px 12px;
   }
 
   h1 {
