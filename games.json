@@ -19,5 +19,16 @@
     "play": "https://tabyen.github.io/3dprint-game/",
     "local": "http://127.0.0.1:5173/",
     "cover": "assets/covers/print-under-fire.jpg"
+  },
+  {
+    "id": "segfault-safari",
+    "title": "Segfault Safari",
+    "tagline": "The stack trace goes 8 frames deep.",
+    "lede": "Descend the call stack. Squash THE BUG.",
+    "description": "A stack trace dungeon crawler. Each level is a stack frame; exceptions are the monsters, print statements are your torch, breakpoints are your checkpoints.",
+    "repo": "tabyen/segfault-safari",
+    "play": "https://tabyen.github.io/segfault-safari/",
+    "local": "http://127.0.0.1:8641/",
+    "cover": "assets/covers/segfault-safari.jpg"
   }
 ]
