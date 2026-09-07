@@ -9,5 +9,15 @@
     "play": "https://tabyen.github.io/dungeon-horde/",
     "local": "http://127.0.0.1:8765/",
     "cover": "assets/covers/crawler.jpg"
+  },
+  {
+    "id": "3dprint-game",
+    "title": "Print Under Fire",
+    "tagline": "One nozzle. One bed. They're already on the skirt.",
+    "description": "Tower defense on a printer bed. Walls and turrets print layer by layer while failed prints crawl toward the motherboard.",
+    "repo": "tabyen/3dprint-game",
+    "play": "https://tabyen.github.io/3dprint-game/",
+    "local": "http://127.0.0.1:5173/",
+    "cover": "assets/covers/print-under-fire.jpg"
   }
 ]

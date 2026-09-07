@@ -4,7 +4,7 @@ Doorway for browser games. Right now that is [Crawler](https://tabyen.github.io/
 
 Live: [https://tabyen.github.io/game-portal/](https://tabyen.github.io/game-portal/)
 
-The featured game is the first entry in `games.json`. Extra entries show under **Also on the shelf**.
+The featured game is the first entry in `games.json` (Crawler). Extra entries, like Print Under Fire, show under **Also on the shelf**.
 
 If you open this page on `localhost` and Crawler is running locally, you get **Play locally**.
 
